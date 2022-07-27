@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINKS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- STYLING SCRIPTS -->
+
+    <script src="https://kit.fontawesome.com/0c247c6173.js" crossorigin="anonymous"></script>
+    
+    <!-- STYLE SHEETS -->
+
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- tittle -->
+    <title>Document</title>
+
+</head>
+<body>
+    <section id="header"> <!-- header -->
+            <form id="book-form" novalidate>
+                <h1>Book <br><span class="book-header">list</span></h1>
+                <h2>Type your book info below</h2>
+                <p></p>
+                    <div class="inputs-box">
+                        <div class="form-group">
+                            <input type="text" name="" class="title typing" required>
+                            <label for="book-title" class="book-name label-name"><span class="text-label-animation">title</span></label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="" class="author typing" required>
+                            <label for="book-author" class="book-author label-name"><span class="text-label-animation">author</span></label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="" class="isbn typing" required>
+                            <label for="book-isbn" class="book-isbn label-name"><span class="text-label-animation">isbn</span></label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="" class="buy" required>
+                            <label for="book-isbn" class="book-buy label-name"><span class="text-label-animation">shop link</span></label>
+                        </div>
+                    </div>
+                    <input type="submit" value="add" class="btn">
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th class="smaller-th-td">Buy</th>
+                        <th class="smaller-th-td">Fav</th>
+                        <th class="smaller-th-td">Remove</th>
+                        
+                    </tr>
+                </thead>
+                <tbody class="book-lists">
+                </tbody>
+            </table>
+    </section>
+        
+</body>
+
+<!-- SCRIPTS -->
+
+<script src="script.js"></script>
+</html>

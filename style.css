@@ -1,0 +1,255 @@
+html
+{
+    font-size: 62.5%;
+   
+
+}
+
+*, *::before, *::after 
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a
+{
+    text-decoration:  none;
+    color:  #8B9A46;
+    
+}
+body
+{
+    background:  #0F0E0E;
+}
+
+
+/* TEXT STYLE */
+
+h1, h2
+{
+    color:  #EEEEEE;
+    
+}
+
+h1
+{
+   font-size:  clamp(3rem, 5vw, 7rem);
+   text-transform: uppercase;
+   font-family:  'Roboto', sans-serif;
+   line-height:  0.8;
+   letter-spacing:  10px;
+}
+
+
+h2
+{
+    font-family:  'Edu TAS Beginner', cursive;
+    font-size: clamp(2rem, 2vw, 5rem);
+    color: #8B9A46;
+    margin-bottom:  10%;
+
+
+}
+
+
+.submit-message
+{
+    font-size: clamp(1rem, 1vw, 5rem);
+    color: #8B9A46;
+    margin-bottom:  10px;
+    
+}
+
+.error {
+    background: #755a5a;
+
+}
+
+.success
+{
+    background:  #8B9A46;
+    color: #EEE;
+    text-transform:  uppercase;
+}
+
+
+/* SECTION STYLE */
+#header
+{
+    min-width:  200px;
+    width: 100%;
+    min-height:  200px;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:  5%;
+    background:  #0F0E0E;
+}
+
+/* FORM STYLE */
+
+form
+{
+    min-width:  15em;
+    width: 50%;
+    max-width:  40em;
+    min-height:  50em;
+    height:  80%;
+    max-height:  80em;
+    padding: 3rem;
+    border-radius:  5%;
+    box-shadow: -11px 11px 20px 0px #755a5a;
+    background:  #541212;
+    display:  flex;
+    flex-direction: column;
+}
+
+.inputs-box
+{
+    min-height:20em;
+    height:  50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.form-group 
+{
+    display: flex;
+    flex-direction: column;
+    margin-top:  4%;
+    position: relative;
+    width: 100%;
+}
+
+.form-group input 
+{
+    flex-shrink:  1;
+    padding:  10px;
+    background:  #0F0E0E88;
+    border:  1px solid rgba(56, 24, 76, 0.25);
+    border-radius: 5px;
+    outline: none;
+    font-size:  clamp(1rem, 3vw, 2rem);
+    color: #EEEEEE87;
+}
+
+.form-group .label-name
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-family:  'Roboto', sans-serif;
+    font-weight: bold;
+    font-size:  clamp(1rem, 3vw, 2rem);
+    letter-spacing: 0.150em;
+    color: #EEEEEE;
+    width: 100%;
+    
+
+}
+
+.text-label-animation
+{
+    position: absolute;
+    transition:  0.5s;
+}
+
+.form-group input:valid ~  .label-name .text-label-animation,
+.form-group input:focus ~ .label-name .text-label-animation
+{
+    transform:  translateY(-120%);
+    font-size: 0.85em;
+    background: #691919;
+    border:  1px solid #8B9A46;
+    border-top:  none;
+    border-bottom: none;
+    letter-spacing: normal;
+    padding: 5px;
+}
+
+.btn
+{
+    border:  none;
+    padding: 1rem;
+    background: #8B9A46;
+    color: #EEEEEE;
+    text-transform: uppercase;
+    font-weight:  bold;
+    letter-spacing: 2px;
+    position:  relative;
+    left: 50%;
+    transform:  translateX(-50%);
+}
+
+.btn:hover 
+{
+    cursor: pointer;
+    background: #408b57 ;   
+}
+
+
+/* TABLE STYLE */
+
+table
+{
+    border: 5px solid #691c1c62; 
+    border-collapse: collapse;
+    background: #a7393962;
+    min-width: 1em;
+    width: 85%;
+    max-width: 53em;
+    font-size:  clamp(1.5rem, 1vw, 2rem);
+    font-weight:  bold;
+    font-family:  sans-serif;
+    color: #EEEEEE;
+}
+
+th
+{
+    width: 10%;
+    letter-spacing:  3px;
+    padding: 10px;
+}
+
+tbody tr
+{
+    background: #a81f1f;;
+    
+}
+
+td
+{
+    padding: 5px;
+    color: #EEEE;
+
+    
+}
+
+.smaller-th-td
+{
+    width:  3%;
+}
+.table-click-remove, .table-click-buy, .table-click-favorite 
+{
+    text-align: center;
+    background: #691c1c;
+    cursor:  pointer;
+}
+
+.table-click-remove:hover, .table-click-buy:hover, .table-click-favorite:hover
+{
+    background: #8d2d2d;
+}
+
+.table-click-remove:hover a, .table-click-buy:hover a, .table-click-favorite:hover a
+{
+    color: #EEEE;
+}
+
