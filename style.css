@@ -53,11 +53,14 @@ h2
 }
 
 
-.submit-message
+p
 {
     font-size: clamp(1rem, 1vw, 5rem);
-    color: #8B9A46;
+    font-family: 'Roboto', sans-serif;
+    font-weight:  bold;
+    color: #EEE;
     margin-bottom:  10px;
+    padding: 5px;
     
 }
 
@@ -69,10 +72,13 @@ h2
 .success
 {
     background:  #8B9A46;
-    color: #EEE;
     text-transform:  uppercase;
 }
 
+.removed
+{
+    background:  white;
+}
 
 /* SECTION STYLE */
 #header
@@ -96,8 +102,8 @@ form
     min-width:  15em;
     width: 50%;
     max-width:  40em;
-    min-height:  50em;
-    height:  80%;
+    min-height:  60em;
+    height:  90%;
     max-height:  80em;
     padding: 3rem;
     border-radius:  5%;
@@ -120,7 +126,7 @@ form
 {
     display: flex;
     flex-direction: column;
-    margin-top:  4%;
+    margin-top:  12%;
     position: relative;
     width: 100%;
 }
@@ -166,12 +172,33 @@ form
 {
     transform:  translateY(-120%);
     font-size: 0.85em;
-    background: #691919;
-    border:  1px solid #8B9A46;
+    background: transparent;
     border-top:  none;
     border-bottom: none;
     letter-spacing: normal;
     padding: 5px;
+}
+
+.form-group input:valid, .form-group input:focus
+{
+    border:  1px solid #8B9A46;
+}
+
+.form-group input.emptyInput
+{
+    border:  1px solid red;
+}
+
+.form-group input.emptyInput ~ .label-name::after
+{
+    content:  '* You missed this field';
+    font-family:  'Roboto', sans-serif;
+    font-size: 0.5em;
+    font-weight: bold;
+    color:  white;
+    position: absolute;
+    top: 250%;
+    left: 40%;
 }
 
 .btn
@@ -184,8 +211,7 @@ form
     font-weight:  bold;
     letter-spacing: 2px;
     position:  relative;
-    left: 50%;
-    transform:  translateX(-50%);
+    top: 10%;
 }
 
 .btn:hover 
@@ -252,4 +278,3 @@ td
 {
     color: #EEEE;
 }
-
