@@ -35,7 +35,7 @@ class UI
             <td>${book.isbn}</td>
             <td class="table-click-buy smaller-th-td"><a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a></td>
             <td class="table-click-favorite smaller-th-td"><a href="#" class="favorite"><i class="fa-solid fa-star"></i></a></td>
-            <td class="table-click-remove smaller-th-td remove"><a href="#" ><i class="fa-solid fa-trash-can"></i></a></td>
+            <td class="table-click-remove smaller-th-td"><i class="fa-solid fa-trash-can remove"></i></td>
             `;
 
         list.appendChild(row);
@@ -53,8 +53,8 @@ class UI
    static removeBooks(el)
    {
         if (el.classList.contains("remove")){
-            el.parentElement.remove();
-        }
+            el.parentElement.parentElement.remove();
+        } 
    }
 
 }
@@ -68,41 +68,44 @@ class UI
             e.preventDefault();
 
             /* GET INPUT VALUES */
-            const title = document.querySelector('.title').value;
-            const author = document.querySelector('.author').value;
-            const isbn = document.querySelector('.isbn').value;
-            const buy = document.querySelector('.buy').value;
+            const title = document.querySelector('.title');
+            const author = document.querySelector('.author');
+            const isbn = document.querySelector('.isbn');
+            const buy = document.querySelector('.buy');
+            const nodeValues = [title.value, author.value, isbn.value, buy.value];
             const nodeLists = [title, author, isbn, buy];
-            const titleEmpty = document.querySelector('.title');
-            const authorEmpty = document.querySelector('.author');
-            const isbnEmpty = document.querySelector('.isbn');
-            const buyEmpty = document.querySelector('.buy');
-            const emptyInput = [titleEmpty, authorEmpty, isbnEmpty, buyEmpty];
             /* VALIDATING */
-            nodeLists.forEach((element, index) => {
+            nodeValues.forEach((element, index) => {
                 
                 if (element === "" || element === null)
                 {
                     console.log(index);
-                    emptyInput[index].classList.add("emptyInput");
+                    nodeLists[index].classList.add("emptyInput");
                 }  else 
                 {
-                    emptyInput[index].classList.remove("emptyInput")
+                    nodeLists[index].classList.remove("emptyInput")
                 }
             })
-            if (title === "" || author === "" ||  isbn ==="" ||  buy === "")
+            if (title.value === "" || author.value === "" ||  isbn.value ==="" ||  buy.value === "")
             {
                 const error = document.querySelector('p');
-                setInterval(()=>{    
-                    error.setAttribute('class', 'error');
-                    error.innerHTML = `YOU NEED TO FILL ALL FIELDS!`
-                }, 5000);
+                error.setAttribute('class', 'error');
+                error.innerHTML = `YOU NEED TO FILL ALL FIELDS!`
+                setTimeout(() => {
+                    error.innerHTML = ``;
+                    error.removeAttribute('class', 'error');
+                },3000 )
+               
             } else
             {
-                const book = new Book(title, author, isbn);
+                const book = new Book(title.value, author.value, isbn.value);
                 const success = document.querySelector('p');
                 success.setAttribute('class', 'success');
                 success.innerHTML = `You have added your book!`;
+                setTimeout(() => {
+                    success.innerHTML = ``;
+                    success.removeAttribute('class', 'error');
+                },3000 )
                 UI.addBookToList(book);
                 UI.clearFields();
             }
