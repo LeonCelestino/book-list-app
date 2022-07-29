@@ -33,8 +33,8 @@ class UI
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.isbn}</td>
-            <td class="table-click-buy smaller-th-td"><a href="#" class="buy"><i class="fa-solid fa-cart-shopping"></i></a></td>
-            <td class="table-click-favorite smaller-th-td"><a href="#" class="favorite"><i class="fa-solid fa-star"></i></a></td>
+            <td class="table-click-buy smaller-th-td"><a href="${book.buy}" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a></td>
+            <td class="table-click-favorite smaller-th-td"><i class="fa-solid fa-star"></i></td>
             <td class="table-click-remove smaller-th-td"><i class="fa-solid fa-trash-can remove"></i></td>
             `;
 
@@ -56,9 +56,16 @@ class UI
             el.parentElement.parentElement.remove();
         } 
    }
-
 }
 
+function isValidUrl (url)
+{
+    try {
+        return !!new URL(url);
+    } catch {
+        return false;
+    }
+}
 /* EVENTS */
     document.addEventListener('DOMContentLoaded', UI.displayBooks);
     /* ADDING BOOKS */
@@ -81,7 +88,7 @@ class UI
                 {
                     console.log(index);
                     nodeLists[index].classList.add("emptyInput");
-                }  else 
+                }  else
                 {
                     nodeLists[index].classList.remove("emptyInput")
                 }
@@ -96,15 +103,24 @@ class UI
                     error.removeAttribute('class', 'error');
                 },3000 )
                
+            } else if (isValidUrl(buy.value) === false)
+            {
+                const error = document.querySelector('p');
+                error.setAttribute('class', error);
+                error.innerHTML = `Your link is invalid!`;
+                setTimeout(() => {
+                    error.innerHTML = ``;
+                    error.removeAttribute('class', 'error');
+                },3000 )
             } else
             {
-                const book = new Book(title.value, author.value, isbn.value);
+                const book = new Book(title.value, author.value, isbn.value, buy.value);
                 const success = document.querySelector('p');
                 success.setAttribute('class', 'success');
                 success.innerHTML = `You have added your book!`;
                 setTimeout(() => {
                     success.innerHTML = ``;
-                    success.removeAttribute('class', 'error');
+                    success.removeAttribute('class', 'success');
                 },3000 )
                 UI.addBookToList(book);
                 UI.clearFields();

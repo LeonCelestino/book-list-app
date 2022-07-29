@@ -260,6 +260,7 @@ td
     
 }
 
+
 .smaller-th-td
 {
     width:  3%;
@@ -268,7 +269,7 @@ td
 }
 
 
-.fa-solid
+a , .fa-solid
 {
     width: 100%;
     height: 100%;
@@ -279,7 +280,10 @@ td
     cursor:  pointer;
     border-left: 3px solid #8d2d2d;
 }
-
+.table-click-buy , .fa-cart-shopping, a
+{
+    border-left:  none;
+}
 .fa-solid:hover
 {
     color: #EEEE;
