@@ -13,14 +13,44 @@ class Book
 
 /* UI CLASS */
 
+class StorageBooks {
+   
+    static gettingData ()
+    {
+        let userBooks;
+        
+        if (localStorage.getItem('userBooks') === null) {
+            userBooks = [ ];
+        } else{
+             userBooks = JSON.parse(window.localStorage.getItem('userBooks'));
+      }
+      return userBooks;
+    }
+
+    static storingData (book)
+    {
+       const userBooks = StorageBooks.gettingData();
+       userBooks.push(book);
+       localStorage.setItem('userBooks', JSON.stringify(userBooks));
+    }
+
+    static removingData (buy)
+    {
+        const books = StorageBooks.gettingData();
+        books.forEach((book, index) => {
+            if (book.buy === buy) {
+                book.splice(index, 1);
+            }
+        });
+        localStorage.setItem('userBooks', JSON.stringify(books));
+    }
+
+}
 class UI
 {
    static displayBooks()
    {
-        const storedBooks = 
-        [
-        ]
-        const books = storedBooks;
+        const books = StorageBooks.gettingData();
         books.forEach((book) => UI.addBookToList(book));
    }
 
@@ -58,6 +88,9 @@ class UI
    }
 }
 
+/* STORAGE CLASS */
+
+
 function isValidUrl (url)
 {
     try {
@@ -66,6 +99,8 @@ function isValidUrl (url)
         return false;
     }
 }
+
+
 /* EVENTS */
     document.addEventListener('DOMContentLoaded', UI.displayBooks);
     /* ADDING BOOKS */
@@ -123,6 +158,7 @@ function isValidUrl (url)
                     success.removeAttribute('class', 'success');
                 },3000 )
                 UI.addBookToList(book);
+                StorageBooks.storingData(book);
                 UI.clearFields();
             }
         }
@@ -131,4 +167,6 @@ function isValidUrl (url)
     /* REMOVING BOOKS */
     document.querySelector(".book-lists").addEventListener('click', (e) => {
         UI.removeBooks(e.target);
+        StorageBooks.removingData(e.target.parentElement.previousElementSibling.textContent);
+        
     })
