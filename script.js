@@ -34,12 +34,15 @@ class StorageBooks {
        localStorage.setItem('userBooks', JSON.stringify(userBooks));
     }
 
-    static removingData (buy)
+    static removingData (isbn)
     {
         const books = StorageBooks.gettingData();
         books.forEach((book, index) => {
-            if (book.buy === buy) {
-                book.splice(index, 1);
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+                console.log("true");
+            } else {
+                console.log("false");
             }
         });
         localStorage.setItem('userBooks', JSON.stringify(books));
@@ -155,7 +158,7 @@ function isValidUrl (url)
                 success.innerHTML = `You have added your book!`;
                 setTimeout(() => {
                     success.innerHTML = ``;
-                    success.removeAttribute('class', 'success');
+                    success.removeAttribute('class', 'success storaged');
                 },3000 )
                 UI.addBookToList(book);
                 StorageBooks.storingData(book);
