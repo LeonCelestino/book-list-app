@@ -170,6 +170,6 @@ function isValidUrl (url)
     /* REMOVING BOOKS */
     document.querySelector(".book-lists").addEventListener('click', (e) => {
         UI.removeBooks(e.target);
-        StorageBooks.removingData(e.target.parentElement.previousElementSibling.textContent);
-        
+        StorageBooks.removingData(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+        console.log(e.target.parentElement.textContent)
     })
