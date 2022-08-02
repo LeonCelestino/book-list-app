@@ -79,18 +79,18 @@ class UI
    {
         const tableRow = document.querySelectorAll(".book-list-row");
         const favBookList =document.querySelector(".book-fav-lists");
+        const rowIsbn = document.querySelectorAll(".isbn");
         const row = document.createElement('tr');
         row.classList.add('book-list-row');
-        tableRow.forEach((el) => {
-            if (el.document.querySelector(".isbn").textContent === isbn)
+        rowIsbn.forEach((el, index) => {
+            if (el.textContent === isbn)
             {
-                const cloningBookList = el.cloneNode(true);
-                row.innerHTML = `${cloningBookList}`;
-                favBookList.appendChild(row);
-                console.log(true);
+                const cloningBookList = tableRow[index-1].cloneNode(true);
+                favBookList.appendChild(cloningBookList);
+                console.log(`true, index: ${index}, row data: ${rowIsbn[index].textContent}`);
             } else
             {
-                console.log(false);
+                console.log(`false, false row data:${rowIsbn[index].textContent}, index: ${index}`);
             }
         })
    }
@@ -188,14 +188,18 @@ function isValidUrl (url)
     )
 
     /* favoriting books */
-    document.querySelector(".table-click-favorite").addEventListener("click", (e) => {
-       const isbn = e.target.previousElementSibling.previousElementSibling;
-       console.log(isbn);
-    })
+        document.querySelector(".book-lists").addEventListener("click", (e) => {
+            UI.addBookToFavBooksList(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+            console.log(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+         });
 
     /* REMOVING BOOKS */
     document.querySelector(".book-lists").addEventListener("click", (e) => {
         UI.removeBooks(e.target);
         StorageBooks.removingData(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
-        console.log(e.target.parentElement.textContent)
+    })
+
+    document.querySelector(".book-fav-lists").addEventListener("click", (e) => {
+        UI.removeBooks(e.target);
+        StorageBooks.removingData(e.target.parentelement.previousElementSibling.previousElementSibling.previousElementSibling.textContent)
     })
