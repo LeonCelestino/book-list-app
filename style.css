@@ -234,9 +234,7 @@ form
 
 table
 {
-    border: 5px solid #691c1c62; 
     border-collapse: collapse;
-    background: #a7393962;
     min-width: 1em;
     width: 85%;
     max-width: 53em;

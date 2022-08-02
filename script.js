@@ -61,18 +61,38 @@ class UI
    {
         const list = document.querySelector(".book-lists");
         const row = document.createElement('tr');
-
+        row.classList.add('book-list-row');
         row.innerHTML =  `     
-            <td>${book.title}</td>
-            <td>${book.author}</td>
-            <td>${book.isbn}</td>
-            <td class="table-click-buy smaller-th-td"><a href="${book.buy}" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a></td>
+            <td class="book-list-data">${book.title}</td>
+            <td class="book-list-data">${book.author}</td>
+            <td class="book-list-data isbn">${book.isbn}</td>
+            <td class="table-click-buy smaller-th-td book-list-data"><a href="${book.buy}" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a></td>
             <td class="table-click-favorite smaller-th-td"><i class="fa-solid fa-star"></i></td>
-            <td class="table-click-remove smaller-th-td"><i class="fa-solid fa-trash-can remove"></i></td>
+            <td class="table-click-remove smaller-th-td book-list-data"><i class="fa-solid fa-trash-can remove"></i></td>
             `;
 
         list.appendChild(row);
 
+   }
+
+   static addBookToFavBooksList(isbn)
+   {
+        const tableRow = document.querySelectorAll(".book-list-row");
+        const favBookList =document.querySelector(".book-fav-lists");
+        const row = document.createElement('tr');
+        row.classList.add('book-list-row');
+        tableRow.forEach((el) => {
+            if (el.document.querySelector(".isbn").textContent === isbn)
+            {
+                const cloningBookList = el.cloneNode(true);
+                row.innerHTML = `${cloningBookList}`;
+                favBookList.appendChild(row);
+                console.log(true);
+            } else
+            {
+                console.log(false);
+            }
+        })
    }
 
    static clearFields()
@@ -167,8 +187,14 @@ function isValidUrl (url)
         }
     )
 
+    /* favoriting books */
+    document.querySelector(".table-click-favorite").addEventListener("click", (e) => {
+       const isbn = e.target.previousElementSibling.previousElementSibling;
+       console.log(isbn);
+    })
+
     /* REMOVING BOOKS */
-    document.querySelector(".book-lists").addEventListener('click', (e) => {
+    document.querySelector(".book-lists").addEventListener("click", (e) => {
         UI.removeBooks(e.target);
         StorageBooks.removingData(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
         console.log(e.target.parentElement.textContent)
